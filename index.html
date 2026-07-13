@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-book Reader</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <header class="sidebar__header">
+        <h1>Library</h1>
+        <div class="hint">Drop <code>*.pdf</code> or <code>*.txt</code> into <code>/ebooks</code></div>
+      </header>
+
+      <div class="toolbar">
+        <button id="refreshBtn" class="btn btn--secondary" type="button">Refresh</button>
+      </div>
+
+      <div id="books" class="books" aria-label="Books"></div>
+    </aside>
+
+    <main class="reader">
+      <header class="reader__header">
+        <div>
+          <div id="bookTitle" class="title">Select a book</div>
+          <div id="bookMeta" class="meta"></div>
+        </div>
+
+        <div class="reader__controls" id="controls">
+          <button id="prevBtn" class="btn" type="button">Prev</button>
+          <div class="page">
+            <input id="pageInput" type="number" min="1" step="1" value="1" />
+            <span id="pageTotal" class="pageTotal">—</span>
+          </div>
+          <button id="nextBtn" class="btn" type="button">Next</button>
+        </div>
+      </header>
+
+      <section class="reader__body">
+        <div id="pdfWrap" class="pdfWrap" hidden>
+          <canvas id="pdfCanvas"></canvas>
+        </div>
+
+        <div id="txtWrap" class="txtWrap" hidden>
+          <div id="txtContent" class="txtContent" aria-live="polite"></div>
+        </div>
+
+        <div id="emptyState" class="emptyState">
+          Add eBooks to <code>ebooks/</code> and refresh.
+        </div>
+      </section>
+
+      <footer class="reader__footer">
+        <div id="status" class="status">Ready.</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- pdf.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.2.67/pdf.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
